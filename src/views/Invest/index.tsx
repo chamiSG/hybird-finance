@@ -13,14 +13,14 @@ function Invest() {
   return (
     <div className="invest-page">
       <Banner title={bannerText.invest} content={bannerText.content} color="light"></Banner>
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" className="container-lg">
         <Box 
           display={'grid'}
           justifyContent={"center"}
           gridAutoColumns={"1fr"} 
-          gridTemplateColumns={"1fr 1fr 1fr"} 
-          gridRowGap={isVerySmallScreen ? "16px" : "4rem"} 
-          gridColumnGap={"4rem"}
+          gridTemplateColumns={isVerySmallScreen ? "1fr" : "1fr 1fr 1fr"} 
+          gridRowGap={isVerySmallScreen ? "3rem" : "4rem"} 
+          gridColumnGap={isVerySmallScreen ? "2rem" : "4rem"}
           pb={"10rem"}
         >
           <Box display={'flex'} alignItems={"center"}>

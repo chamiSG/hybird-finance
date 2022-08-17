@@ -137,3 +137,61 @@
     border-bottom: 0.15rem solid #3a3a3a;
     background-color: transparent;
 }
+
+
+.lock-period_button {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    height: 110px;
+    padding: 0.5rem 0.5rem 0.75rem;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    border-radius: 4px;
+    background-color: hsla(0, 0%, 100%, 0.35);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    text-decoration: none;
+    color: #000;
+    
+    
+  }
+  
+  .lock-period_button.shadow-medium {
+    height: 100px;
+  }
+
+
+  .lock-period_button.selected.shadow-medium {
+    background-color: #fff;
+  }
+  
+  .lock-period_month-count {
+    font-family: Merriweather, serif;
+    font-size: 1.375rem;
+    line-height: 1.2;
+    color: #000;
+  }
+  
+  .multiplier {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #3a3a3a;
+    font-size: 0.875rem;
+  }
+  
+  .multiplier.selected {
+    background-color: #3a3a3a;
+    color: #fff;
+    font-weight: 300;
+  }

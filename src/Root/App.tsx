@@ -7,7 +7,7 @@ import { loadAccountDetails } from "../store/slices/account-slice";
 import { IReduxState } from "../store/slices/state.interface";
 import Loading from "../components/Loader";
 import ViewBase from "../components/ViewBase";
-import { Invest, MyInvestment, NotFound } from "../views";
+import { Invest, MyInvestment, NotFound, Treasury } from "../views";
 import "./style.scss";
 import Home from "src/views/Home";
 
@@ -95,9 +95,9 @@ function App() {
             <MyInvestment />
           </Route>
 
-          {/* <Route path="/locker">
-            <Locker />
-          </Route> */}
+          <Route path="/treasury">
+            <Treasury />
+          </Route>
 
           <Route component={NotFound} />
         </Switch>

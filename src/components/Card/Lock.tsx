@@ -2,19 +2,19 @@ import { useState } from "react";
 import "./card.scss";
 import { makeStyles } from '@material-ui/core/styles';
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { Card, Box, Typography, Tabs, Tab } from '@material-ui/core';
+import { Card, Box, Typography } from '@material-ui/core';
 import LockIcon from "src/assets/icons/lock.svg";
 import UnLockIcon from "src/assets/icons/unlock.svg";
 import MoreIcon from "src/assets/icons/icon_more.svg";
 import LessIcon from "src/assets/icons/icon_less.svg";
-import TabPanel from "../Tab/TabPanel";
 import Input from "../Input";
 import Button from "../Button";
 import CardInfo from "./CardInfo"
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 384,
+    // minWidth: 384,
+    width: "100%",
     height: "100%",
     overflow: "visible",
     transform: backface => backface ? "translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)" 
@@ -48,7 +48,8 @@ function Lock(props: any) {
   const { title, content, theme } = props;
 
   const [backface, setBackface] = useState(true);
-  const [active, setTabActive] = useState(false);
+  const [active, setTabActive] = useState(true);
+  const [selected, setBoxSelect] = useState(0);
 
   const handleBackface = () => {
     setBackface((prevBackface) => !prevBackface);
@@ -56,6 +57,16 @@ function Lock(props: any) {
 
   const handleChange = () => {
     setTabActive((prevActive) => !prevActive);
+  };
+
+  const periods = [
+    { month: 3, value: 1.250},
+    { month: 6, value: 1.650},
+    { month: 12, value: 2.0},
+  ]
+
+  const handleSelect = (event: React.MouseEvent<EventTarget>, i: number) => {
+    setBoxSelect(i);
   };
   
   const classes = useStyles(backface);
@@ -110,11 +121,28 @@ function Lock(props: any) {
                 <Box display={"flex"} justifyContent={"center"} flexDirection={"column"} gridRowGap={"2rem"}>
                   <Box display={"flex"} justifyContent={"center"} flexDirection={"column"}>
                     <label>Select Lock Period</label>
-                    <Box display={"flex"} justifyContent={"center"} flexDirection={"column"} p={"1rem"} borderRadius={"8px"} bgcolor={"#ffffff59"}>
-                      <Box display={"flex"} flexDirection={'column'} alignItems={'flex-start'}>
-                        <Typography className="info-card-text">12,345.948 HFI</Typography>
-                        <Typography className="info-card-sub-text">$8,567.78 USD</Typography>
-                      </Box>
+                    <Box
+                      display={'grid'}
+                      justifyContent={"center"}
+                      gridAutoColumns={"1fr"} 
+                      gridTemplateColumns={"1fr 1fr 1fr"} 
+                      gridColumnGap={"0.9rem"}
+                    >
+                      {periods.map((period, i) => (
+                          <a 
+                            onClick={(e) => {
+                              handleSelect(e, i)
+                            }} 
+                            href="javascript:void(0)" className={`${selected == i ? "selected" : ''} lock-period_button shadow-medium w-inline-block`}>
+                            <div className="lock-period_month-wrapper">
+                              <div className="lock-period_month-count">{period.month}</div>
+                              <div className="text-size-small">Months</div>
+                            </div>
+                            <div className={`${selected == i ? "selected" : ''} multiplier`}>{period.value}x</div>
+                          </a>
+                        ))
+
+                      }
                     </Box>
                   </Box>
                   <Input label="Lock Amount"></Input>
@@ -131,10 +159,6 @@ function Lock(props: any) {
                 </Box>
               </div>
             </Box>
-
-            
-
-            
         </Box>
         <Box className="card-back">
           <Box display={"flex"} justifyContent={"space-between"} flexDirection={"column"} height={"100%"}>

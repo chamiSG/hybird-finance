@@ -285,7 +285,13 @@ p {
     opacity: 1;
     transition: opacity 300ms ease 0s;
 }
-
 .tab-content-hidden {
     display: none !important;
+}
+.text-size-small {
+    font-size: 0.8125rem;
+}
+.container-lg {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
 }
