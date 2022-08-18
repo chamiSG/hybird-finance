@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import "./select.scss";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import IconAvax from "src/assets/images/icon_avax.svg"
+import { AvaxIcon } from "src/helpers/icons"
 
 import {
   Button,
@@ -97,19 +97,19 @@ function Select(props: any) {
                   <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                     <MenuItem onClick={handleClose}>
                       <Box display={"flex"} gridColumnGap={10} alignItems="center">
-                        <img src={IconAvax} alt="" />
+                        <img src={AvaxIcon} alt="" />
                         <div>HyBrid</div>
                       </Box>
                     </MenuItem>
                     <MenuItem onClick={handleClose}>
                       <Box display={"flex"} gridColumnGap={10} alignItems="center">
-                        <img src={IconAvax} alt="" />
+                        <img src={AvaxIcon} alt="" />
                         <div>AVAX</div>
                       </Box>
                     </MenuItem>
                     <MenuItem onClick={handleClose}>
                       <Box display={"flex"} gridColumnGap={10} alignItems="center">
-                        <img src={IconAvax} alt="" />
+                        <img src={AvaxIcon} alt="" />
                         <div>BNB</div>
                       </Box>
                     </MenuItem>

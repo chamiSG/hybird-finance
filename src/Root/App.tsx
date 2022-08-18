@@ -90,15 +90,12 @@ function App() {
           <Route path="/invest">
             <Invest />
           </Route>
-
           <Route path="/my-investment">
             <MyInvestment />
           </Route>
-
           <Route path="/treasury">
             <Treasury />
           </Route>
-
           <Route component={NotFound} />
         </Switch>
       </ViewBase>

@@ -295,3 +295,47 @@ p {
     padding-left: 24px !important;
     padding-right: 24px !important;
 }
+
+.MuiTableCell-root {
+    font-family: Poppins, sans-serif !important;
+    font-size: 0.8rem !important;
+    color: #fff !important;
+    border-bottom: none !important;
+    padding: 12px !important;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.metric-label {
+    margin-bottom: 0.5rem !important;
+    font-size: 0.8rem !important;
+    line-height: 1.2 !important;
+    text-align: center;
+    letter-spacing: 1px !important;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 3px rgb(0 0 0 / 70%);
+    font-family: Poppins, sans-serif !important;
+}
+
+.metric {
+  font-family: Merriweather, serif !important;
+  font-size: 1.75rem !important;
+  text-align: center;
+  text-shadow: 1px 1px 3px rgb(0 0 0 / 60%);
+}
+
+@media screen and (max-width: 479px) {
+  .metric-label {
+    font-size: 0.7rem !important;
+    letter-spacing: 0px !important;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .metric {
+    font-size: 1rem !important;
+    letter-spacing: -0.5px !important;
+  }
+}

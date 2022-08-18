@@ -3,10 +3,8 @@ import "./card.scss";
 import { makeStyles } from '@material-ui/core/styles';
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { Card, Box, Typography } from '@material-ui/core';
-import LockIcon from "src/assets/icons/lock.svg";
-import UnLockIcon from "src/assets/icons/unlock.svg";
-import MoreIcon from "src/assets/icons/icon_more.svg";
-import LessIcon from "src/assets/icons/icon_less.svg";
+import { LockIcon, UnLockIcon, MoreIcon, LessIcon } from "src/helpers/icons"
+
 import Input from "../Input";
 import Button from "../Button";
 import CardInfo from "./CardInfo"
