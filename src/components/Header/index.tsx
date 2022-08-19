@@ -2,11 +2,8 @@ import { AppBar, Toolbar } from "@material-ui/core";
 import { Menu, Close } from '@material-ui/icons';
 import { makeStyles } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import KEEPERMenu from "./time-menu";
-import ConnectButton from "./connect-button";
 import "./header.scss";
 import { TRANSITION_DURATION } from "../../constants/style";
-import TestnetMenu from "./testnet-menu";
 import Logo from "../Logo";
 import MenuLink from "../MenuLink";
 

@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Container, Box, Divider } from "@material-ui/core";
 import "./my-investment.scss";
 import Banner from "../../components/Banner";
@@ -5,10 +7,17 @@ import { bannerText } from "../../constants/bannerText"
 import PriceCard from "src/components/PriceCard";
 import Chart from "src/components/Chart";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { loadInvestmentDetails } from "src/store/slices/investment-slice";
 
 
 function MyInvestment() {
+  const dispatch = useDispatch();
+
   const isVerySmallScreen = useMediaQuery("(max-width: 400px)");
+  
+  useEffect(() => {
+    dispatch(loadInvestmentDetails());
+  }, []);
 
   return (
     <div className="my-investment-page">

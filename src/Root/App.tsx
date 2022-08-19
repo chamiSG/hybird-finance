@@ -12,7 +12,7 @@ import "./style.scss";
 import Home from "src/views/Home";
 
 function App() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   // const { connect, provider, hasCachedProvider, chainID, connected } = useWeb3Context();
   // const address = useAddress();
@@ -51,15 +51,9 @@ function App() {
   //     [connected],
   // );
 
-  // useEffect(() => {
-  //     if (hasCachedProvider()) {
-  //         connect().then(() => {
-  //             setWalletChecked(true);
-  //         });
-  //     } else {
-  //         setWalletChecked(true);
-  //     }
-  // }, []);
+  useEffect(() => {
+    dispatch(loadAppDetails());
+  }, []);
 
   // useEffect(() => {
   //     if (walletChecked) {

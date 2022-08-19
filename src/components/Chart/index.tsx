@@ -1,13 +1,21 @@
 import "./chart.scss";
 import LineChart from 'react-apexcharts'
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-
-
+import { IStakedHistorical } from "src/store/types";
+import {formatDate} from 'src/helpers/format-date'
 function Chart(props: any) {
 
-  const { title, content, theme } = props;
+  const { data, theme } = props;
   const isVerySmallScreen = useMediaQuery("(max-width: 400px)");
   const isDark = theme == "dark" ? true : false;
+
+  const dateArry: string[] = [];
+  const valueArry: number[] = [];
+
+  data?.map((item: IStakedHistorical) => {
+    dateArry.unshift(formatDate(item.date));
+    valueArry.unshift(item.value);
+  });
 
   const options = {
     
@@ -31,7 +39,7 @@ function Chart(props: any) {
           fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif'
         },
       },
-      categories: [1995, 1996, 1997, 1998, 1999],
+      categories: dateArry,
     },
     yaxis: {
       labels: {
@@ -64,7 +72,7 @@ function Chart(props: any) {
 
   const series = [{
     name: 'Price',
-    data: [50000, 8000, 5000, 102000, 150000]
+    data: valueArry
   }]
 
   return (
@@ -75,3 +83,4 @@ function Chart(props: any) {
 }
 
 export default Chart;
+

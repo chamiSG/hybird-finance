@@ -1,10 +1,10 @@
 import { ethers } from "ethers";
-import { getAddresses } from "../../constants";
-import { prettyTimeRemaining, setAll } from "../../helpers";
+import { TOKEN_NAME } from "../../constants";
+import { prettyTimeRemaining, setAll, apiGetRequest, BASE_URL } from "../../helpers";
 import { createSlice, createSelector, createAsyncThunk } from "@reduxjs/toolkit";
 import { JsonRpcProvider } from "@ethersproject/providers";
 import { RootState } from "../store";
-import { InfinityPoolContract, V2Contract, VeHybridContract } from "src/abi";
+import { IMetrics } from "../types";
 
 interface ILoadAppDetails {
     networkID: number;
@@ -14,35 +14,32 @@ interface ILoadAppDetails {
 export const loadAppDetails = createAsyncThunk(
     "app/loadAppDetails",
     //@ts-ignore
-    async ({ networkID, provider }: ILoadAppDetails) => {
-        const addresses = getAddresses(networkID);
-        const v2Contract = new ethers.Contract(addresses.V2_ADDRESS, V2Contract, provider);
-        const infinityPoolContract = new ethers.Contract(addresses.INFINITY_POOL_ADDRESS, InfinityPoolContract, provider);
-        const price = await infinityPoolContract.getPrice();
-        const totalValue = await infinityPoolContract.getTotalValue();
-        const totalSupply = await v2Contract.totalSupply();
+    async () => {
+        const getProtocolMetrics = await apiGetRequest(`${BASE_URL}/protocols/get_protocol_metrics?token=${TOKEN_NAME}`);
+        
+        console.log(getProtocolMetrics)
 
+        const metrics: IMetrics = {
+            price: getProtocolMetrics.data[0].price_usd,
+            treasury: Number(getProtocolMetrics.data[0].treasury_value.toFixed(2)).toLocaleString(),
+            totalHolders: Number(getProtocolMetrics.data[0].total_holders).toLocaleString(),
+            infinityPool: Number(getProtocolMetrics.data[0].infinity_pool_value.toFixed(2)).toLocaleString(),
+            stakedHistorical: getProtocolMetrics.data[0].staked_historical
+        }
         return {
-            price: ethers.utils.formatUnits(price, "mwei"),
-            totalValue: ethers.utils.formatUnits(totalValue, "mwei"),
-            totalSupply: ethers.utils.formatUnits(totalSupply, "ether"),
+            metrics: metrics,
         };
     },
 );
 
 const initialState = {
     loading: false,
+    metrics: {}
 };
 
 export interface IAppSlice {
     loading: boolean;
-    price: string;
-    totalValue: string;
-    totalSupply: string;
-    veRatio: string;
-    isLocked: boolean;
-    nextTime: string;
-    networkID: number;
+    metrics: IMetrics;
 }
 
 const appSlice = createSlice({
